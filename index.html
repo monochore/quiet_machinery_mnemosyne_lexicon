@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IV. MNEMOSYNE — Quiet Machinery Lexicon</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Roboto+Mono:wght@200;400&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg: #000000;
+--text: #ffffff;
+--border: #1a1a1a;
+--mnemosyne: #83938E; /* Weathered Mortar */
+}
+
+body {
+background: var(--bg);
+color: var(--text);
+font-family: 'Oswald', sans-serif;
+margin: 0;
+padding: 0;
+line-height: 1.5;
+}
+
+header {
+padding: 60px 20px 20px;
+border-bottom: 1px solid var(--border);
+max-width: 800px;
+margin: 0 auto;
+}
+
+h1 {
+font-size: 3.5rem;
+text-transform: uppercase;
+letter-spacing: 12px;
+margin: 0;
+line-height: 1;
+}
+
+.blueprint-container {
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+box-sizing: border-box;
+}
+
+.engine-section {
+margin-bottom: 60px;
+padding-bottom: 40px;
+}
+
+/* --- ART & POETRY HEADER --- */
+.hero-art {
+width: 100%;
+height: 250px;
+overflow: hidden;
+position: relative;
+border: 1px solid var(--border);
+}
+
+.hero-art img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: grayscale(100%) brightness(20%);
+}
+
+.poetry-box {
+position: absolute;
+bottom: 20px;
+left: 20px;
+right: 20px;
+}
+
+.engine-heading {
+font-size: 2.5rem;
+margin: 0;
+letter-spacing: 6px;
+text-transform: uppercase;
+line-height: 1;
+}
+
+.poetry-quote {
+font-style: italic;
+font-weight: 300;
+font-size: 1.1rem;
+margin: 10px 0 0;
+line-height: 1.3;
+opacity: 0.9;
+}
+
+.environmental-context {
+font-family: 'Roboto Mono', monospace;
+font-size: 0.75rem;
+opacity: 0.5;
+line-height: 1.6;
+margin: 25px 0;
+padding-left: 15px;
+border-left: 1px solid #333;
+}
+
+/* --- FACEPLATE --- */
+.faceplate-wrap {
+width: 100%;
+border: 1px solid #1a1a1a;
+background: #000;
+margin-bottom: 35px;
+}
+
+.faceplate-wrap img {
+width: 100%;
+display: block;
+}
+
+/* --- SPECIFICATION LIST --- */
+.blueprint-spec {
+font-family: 'Roboto Mono', monospace;
+margin-top: 20px;
+}
+
+.section-block {
+margin-bottom: 25px;
+}
+
+.section-tag {
+font-family: 'Oswald';
+font-size: 0.85rem;
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+display: block;
+margin-bottom: 10px;
+border-bottom: 1px solid #222;
+padding-bottom: 4px;
+}
+
+.param-row {
+display: flex;
+flex-direction: column;
+margin-bottom: 12px;
+padding-left: 10px;
+}
+
+.param-name {
+font-weight: 700;
+font-size: 0.85rem;
+text-transform: uppercase;
+color: #fff;
+}
+
+.param-desc {
+font-weight: 200;
+font-size: 0.75rem;
+opacity: 0.6;
+line-height: 1.4;
+margin-top: 3px;
+}
+
+/* --- COLLAPSIBLE QUICK START / DISCOVER PANEL --- */
+.discover-bar {
+margin-top: 36px;
+border-top: 1px solid #222;
+padding-top: 24px;
+display: flex;
+justify-content: flex-start;
+}
+
+.discover-trigger {
+background: #080808;
+color: #fff;
+border: 1px solid var(--mnemosyne);
+font-family: 'Oswald', sans-serif;
+font-size: 0.9rem;
+font-weight: 700;
+letter-spacing: 3px;
+text-transform: uppercase;
+padding: 10px 18px;
+cursor: pointer;
+transition: background 0.15s ease, color 0.15s ease;
+}
+
+.discover-trigger:hover {
+background: var(--mnemosyne);
+color: #000;
+}
+
+.discover-drawer {
+display: none;
+margin-top: 18px;
+border: 1px solid #262626;
+background: #070707;
+padding: 20px;
+font-family: 'Roboto Mono', monospace;
+}
+
+.discover-drawer.open {
+display: block;
+}
+
+.drawer-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid #1f1f1f;
+padding-bottom: 10px;
+margin-bottom: 18px;
+}
+
+.drawer-title {
+font-family: 'Oswald', sans-serif;
+font-size: 1rem;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--mnemosyne);
+margin: 0;
+}
+
+.drawer-collapse {
+background: transparent;
+border: 1px solid #444;
+color: #bbb;
+font-family: 'Roboto Mono', monospace;
+font-size: 0.7rem;
+text-transform: uppercase;
+padding: 4px 10px;
+cursor: pointer;
+}
+
+.drawer-collapse:hover {
+color: #fff;
+border-color: #fff;
+}
+
+.drawer-block {
+margin-bottom: 20px;
+}
+
+.drawer-block:last-child {
+margin-bottom: 0;
+}
+
+.drawer-sub {
+font-family: 'Oswald', sans-serif;
+font-size: 0.85rem;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: #fff;
+margin: 0 0 8px;
+}
+
+.drawer-list {
+margin: 0;
+padding-left: 18px;
+font-size: 0.75rem;
+font-weight: 200;
+line-height: 1.65;
+opacity: 0.78;
+}
+
+.drawer-list li {
+margin-bottom: 6px;
+}
+
+.friction-prompt {
+border-left: 2px solid var(--mnemosyne);
+padding-left: 12px;
+font-size: 0.75rem;
+font-weight: 200;
+line-height: 1.65;
+opacity: 0.75;
+margin-bottom: 10px;
+}
+
+footer {
+padding: 60px 20px;
+text-align: center;
+opacity: 0.2;
+font-size: 0.6rem;
+letter-spacing: 4px;
+font-family: 'Roboto Mono', monospace;
+border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>QUIET MACHINERY</h1>
+</header>
+
+<main class="blueprint-container">
+<section class="engine-section">
+<div class="hero-art">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Plate_1-_Part_of_the_Forum_of_Nerva_%28Parte_del_Foro_di_Nerva%29_MET_DP827927.jpg" alt="Mnemosyne Art">
+<div class="poetry-box">
+<h2 class="engine-heading" style="color: var(--mnemosyne);">IV. MNEMOSYNE</h2>
+<div class="poetry-quote">"Memory is never retrieved whole; it is a ruin reconstructed from shattered pieces."</div>
+</div>
+</div>
+
+<div class="environmental-context">
+A live-capture rhythmic micro-slicer and morphological mosaic environment, designed to cast suspended audio in mortar, fracture it into interlocking tessellations, and bleed them into suffocating decay. Mnemosyne tears a single breath of audio from the room and casts it in mortar. The architecture is immediately subjected to fault lines, temporal decay, and violent dropouts. What remains is a destructive mosaic—asynchronous strata and morphological lanes forcing the frozen trace into shifting ruins. Ghosts wake up in the undercurrent. It is the act of building a heavy, ancient temple from the broken glass of the immediate past.
+</div>
+
+<div class="faceplate-wrap">
+<img src="mnemosyne_face.png" alt="Mnemosyne Front Panel">
+</div>
+
+<div class="blueprint-spec">
+<div class="section-block">
+<span class="section-tag" style="color: var(--mnemosyne);">SYSTEM &amp; OLED (Capture, State &amp; Sabotage)</span>
+<div class="param-row">
+<span class="param-name">Activate / Scope (Seismograph Toggle)</span>
+<span class="param-desc">Initializes the audio engine and switches the OLED display between live waveform trace and peak seismograph history.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Freeze (Trace Toggle)</span>
+<span class="param-desc">The performance catalyst; halts buffer overwrite to trap a live 2-second block of incoming or routed audio as structural raw material.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Mic / File / Rec / Dump / Drift / A–B</span>
+<span class="param-desc">Routes live microphone or audio files into the capture buffer, records stereo WAV output, saves randomized state presets, applies subtle parameter drift, and morphs between A and B snapshots.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Fault</span>
+<span class="param-desc">Actively sabotages structural regularity, shifting harmonic ratios or fracturing windows with probabilistic dropouts and silence.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Seep</span>
+<span class="param-desc">Introduces phase drift across heads, cross-choking between layers, stutter gating, and high-threshold feedback flooding.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Andamento</span>
+<span class="param-desc">Governs the base cycling rate of the four playhead subdivisions across the captured buffer.</span>
+</div>
+</div>
+
+<div class="section-block">
+<span class="section-tag" style="color: var(--mnemosyne);">I. PATINA (Time &amp; Weathering)</span>
+<div class="param-row">
+<span class="param-name">Cadence</span>
+<span class="param-desc">Scales tape-speed / read-window rate around a 1:1 center reference, stretching or compressing the temporal grain of the buffer.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Index</span>
+<span class="param-desc">Shifts the read-head scan offset across the 2-second memory buffer, moving between strata of the captured sound.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Erosion</span>
+<span class="param-desc">Morphs head envelopes between step-cut gates and curved sinusoidal windows, wearing down sharp edges into eroded swells.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Silica</span>
+<span class="param-desc">Subjects the signal to sample-rate decimation and wavefolding, turning smooth strata into brittle, crystalline grit.</span>
+</div>
+</div>
+
+<div class="section-block">
+<span class="section-tag" style="color: var(--mnemosyne);">II. TESSELLATION (Mosaic Subdivisions)</span>
+<div class="param-row">
+<span class="param-name">Block, Tile, Frag (Fragment), &amp; Frit</span>
+<span class="param-desc">Four interlocking voice heads reading staggered offsets of the shared memory buffer. Each head shapes a distinct subdivision tier and density so a single static buffer yields shifting polyrhythmic architecture without pitch dissonance.</span>
+</div>
+</div>
+
+<div class="section-block">
+<span class="section-tag" style="color: var(--mnemosyne);">III. DESCENT (Undercurrent &amp; Abyss)</span>
+<div class="param-row">
+<span class="param-name">Undertow</span>
+<span class="param-desc">Reads backward through the buffer beneath the main mosaic, pulling a heavy reversed undercurrent into the mix.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Cantor</span>
+<span class="param-desc">Introduces a tunable, folded sub-oscillator and upper eidolon voice that melt and cross-modulate against the mosaic core.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Lethe</span>
+<span class="param-desc">Feeds the signal into a dual-tap, high-pass-filtered low-pass Bucket Brigade delay tank, blurring fractured slices into a dark, wheezing abyss.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Scatter</span>
+<span class="param-desc">Scatters probability-gated micro-slices across the stereo field, snapping toward a 5/16 Euclidean lock at high settings.</span>
+</div>
+</div>
+
+<div class="section-block">
+<span class="section-tag" style="color: var(--mnemosyne);">SHATTER MATRIX (Morphological Sequencer &amp; Canopy)</span>
+<div class="param-row">
+<span class="param-name">I. Strata / II. Erosion / III. Silica / IV. Lethe (Lanes)</span>
+<span class="param-desc">Four morphological injection lanes rather than drum triggers. Each lane injects state movement into its corresponding domain—shifting buffer slice offsets, eroding windows and dropouts, folding high-frequency grit, or swelling the BBD/undertow cloud—while color-polluting and morphing the eight ASCII blocks below.</span>
+</div>
+<div class="param-row">
+<span class="param-name">Seq / Mod / Hold / Len / Pg / Clr &amp; Lane Dice (⚄)</span>
+<span class="param-desc"><strong>SEQ</strong> toggles sequencer interaction against free-running playheads; <strong>MOD</strong> locks or clears per-step dial values; <strong>HOLD</strong> latches sustained states across steps; <strong>LEN</strong> and <strong>PG</strong> adjust lane length (1–64) and 16-step view pages; <strong>CLR</strong> clears lane steps or locks; each lane's <strong>⚄</strong> button rolls fresh morphological steps (or random MOD locks when MOD is active).</span>
+</div>
+<div class="param-row">
+<span class="param-name">Pace / Sus / Grow / Drag</span>
+<span class="param-desc"><strong>PACE</strong> sets sequencer step rate from slow macro-drift to fast clock; <strong>SUS</strong> lengthens cloud release tails; <strong>GROW</strong> mutates steps and seeps parameter locks across loop cycles; <strong>DRAG</strong> slews morphological transitions without scrubbing slice pitch.</span>
+</div>
+</div>
+</div>
+
+<div class="discover-bar">
+<button class="discover-trigger" id="discover-toggle" type="button" aria-expanded="false" aria-controls="discover-drawer">
+DISCOVER THE FAULT // QUICK START
+</button>
+</div>
+
+<aside class="discover-drawer" id="discover-drawer" aria-label="Mnemosyne Quick Start and Defamiliarization Notes">
+<div class="drawer-header">
+<h3 class="drawer-title">QUICK START &amp; DEFAMILIARIZATION NOTES</h3>
+<button class="drawer-collapse" id="discover-collapse" type="button">COLLAPSE</button>
+</div>
+
+<div class="drawer-block">
+<h4 class="drawer-sub">Short Operational Manual</h4>
+<ol class="drawer-list">
+<li><strong>Ingest &amp; Freeze:</strong> Click <strong>ACTIVATE</strong>, feed audio via <strong>MIC</strong> or <strong>FILE</strong>, and engage <strong>FREEZE</strong> to lock a 2-second memory stratum.</li>
+<li><strong>Sculpt the Core:</strong> Set <strong>ANDAMENTO</strong> and <strong>CADENCE</strong> for base motion, then balance <strong>BLOCK</strong>, <strong>TILE</strong>, <strong>FRAG</strong>, and <strong>FRIT</strong> against <strong>EROSION</strong>, <strong>SILICA</strong>, and <strong>LETHE</strong>.</li>
+<li><strong>Paint or Roll Morphological Lanes:</strong> Click or drag across steps on lanes <strong>I–IV</strong> to paint transient hits (<code>|</code>), held states (<code>=</code>), or saturated blocks (<code>#</code>), or hit a lane's <strong>⚄</strong> dice button to generate a contour.</li>
+<li><strong>Shape Cloud &amp; Evolution Behavior:</strong> Use <strong>PACE</strong> for macro-speed, <strong>SUS</strong> for tail length, <strong>HOLD</strong> to latch sustained states, <strong>DRAG</strong> to smooth morphological transitions, and <strong>GROW</strong> to let the pattern and parameter locks seep and evolve across cycles.</li>
+<li><strong>Lock &amp; Capture:</strong> Toggle <strong>MOD</strong> to lock dial values onto specific steps (or roll random locks with <strong>⚄</strong>), and use <strong>REC</strong> to export stereo WAV recordings.</li>
+</ol>
+</div>
+
+<div class="drawer-block">
+<h4 class="drawer-sub">Defamiliarized Thinking Encouragement</h4>
+<p class="friction-prompt">
+Resist treating the four lanes like a four-part drum kit. A single sustained bar on <strong>I. STRATA</strong> or <strong>IV. LETHE</strong> with slow <strong>PACE</strong> and high <strong>SUS</strong> is not a beat—it is a shift in geological pressure over a frozen room.
+</p>
+<p class="friction-prompt">
+When a sequence starts sounding neat, familiar, or predictable, turn <strong>GROW</strong> up slightly and step away from the mouse for three cycles. Let the rules warp your own handiwork before intervening again.
+</p>
+</div>
+</aside>
+</section>
+</main>
+
+<footer>QUIET MACHINERY // DANIEL JAMES CORKER [2026]</footer>
+
+<script>
+(function() {
+const toggleBtn = document.getElementById('discover-toggle');
+const collapseBtn = document.getElementById('discover-collapse');
+const drawer = document.getElementById('discover-drawer');
+
+function setDrawerState(isOpen) {
+drawer.classList.toggle('open', isOpen);
+toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+toggleBtn.textContent = isOpen ? 'HIDE THE FAULT // QUICK START' : 'DISCOVER THE FAULT // QUICK START';
+}
+
+toggleBtn.addEventListener('click', function() {
+setDrawerState(!drawer.classList.contains('open'));
+});
+
+collapseBtn.addEventListener('click', function() {
+setDrawerState(false);
+toggleBtn.focus();
+});
+})();
+</script>
+</body>
+</html>
